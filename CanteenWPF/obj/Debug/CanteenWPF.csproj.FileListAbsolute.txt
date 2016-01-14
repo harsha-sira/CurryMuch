@@ -1,0 +1,13 @@
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\bin\Debug\CanteenWPF.exe.config
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\bin\Debug\CanteenWPF.exe
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\bin\Debug\CanteenWPF.pdb
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\MainWindow.baml
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\MainWindow.g.cs
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\App.g.cs
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\CanteenWPF_MarkupCompile.cache
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\CanteenWPF.g.resources
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\CanteenWPF.Properties.Resources.resources
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\CanteenWPF.csproj.GenerateResource.Cache
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\CanteenWPF.exe
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\CanteenWPF.pdb
+c:\users\hali\documents\visual studio 2013\Projects\CanteenWPF\CanteenWPF\obj\Debug\CanteenWPF.csprojResolveAssemblyReference.cache
