@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.Ports;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,19 +16,20 @@ using System.Windows.Shapes;
 namespace CanteenWPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainPage : Page
     {
-
-        
-        public MainWindow()
+        private Frame mainframe;
+        public MainPage(Frame mainframe)
         {
-            
             InitializeComponent();
-            _mainFrame.Navigate(new MainPage(this._mainFrame));  
+            this.mainframe = mainframe;
         }
 
-              
+        private void breakfastBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(new lunch(mainframe));
+        }
     }
 }
