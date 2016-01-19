@@ -23,7 +23,7 @@ namespace CanteenWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        double checksss;
         
         public MainWindow()
         {

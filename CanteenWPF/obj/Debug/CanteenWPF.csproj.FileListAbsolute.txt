@@ -24,7 +24,13 @@ C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenW
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\CanteenWPF.g.resources
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\CanteenWPF.Properties.Resources.resources
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\CanteenWPF.csproj.GenerateResource.Cache
-C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\lunch.baml
-C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\lunch.g.cs
-C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\MainPage.baml
-C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\MainPage.g.cs
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\lunch.baml
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\MainPage.baml
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\lunch.g.cs
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\MainPage.g.cs
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\breakfast.baml
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\breakfast.g.cs
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\dinner.baml
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\dinner.g.cs
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\payment.baml
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\payment.g.cs

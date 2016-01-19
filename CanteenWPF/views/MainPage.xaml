@@ -10,8 +10,8 @@
 
     <Grid Background="#FFF9F4F4" Width="1200" Height="800">
         <Button x:Name="breakfastBtn" Content="Breakfast" HorizontalAlignment="Left" Margin="436,186,0,0" VerticalAlignment="Top" Width="308" Height="106" FontSize="48" FontWeight="Bold" Click="breakfastBtn_Click"/>
-        <Button x:Name="lunchBtn" Content="Lunch" HorizontalAlignment="Left" Margin="436,344,0,0" VerticalAlignment="Top" Width="308" Height="106" FontSize="48" FontWeight="Bold"/>
-        <Button x:Name="dinnerBtn" Content="Dinner" HorizontalAlignment="Left" Margin="436,498,0,0" VerticalAlignment="Top" Width="308" Height="106" FontSize="48" FontWeight="Bold"/>
+        <Button x:Name="lunchBtn" Content="Lunch" HorizontalAlignment="Left" Margin="436,344,0,0" VerticalAlignment="Top" Width="308" Height="106" FontSize="48" FontWeight="Bold" Click="lunchBtn_Click"/>
+        <Button x:Name="dinnerBtn" Content="Dinner" HorizontalAlignment="Left" Margin="436,498,0,0" VerticalAlignment="Top" Width="308" Height="106" FontSize="48" FontWeight="Bold" Click="dinnerBtn_Click"/>
 
     </Grid>
 </Page>

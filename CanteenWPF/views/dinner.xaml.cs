@@ -17,15 +17,15 @@ using System.Windows.Shapes;
 namespace CanteenWPF
 {
     /// <summary>
-    /// Interaction logic for lunch.xaml
+    /// Interaction logic for dinner.xaml
     /// </summary>
     /// 
     
-    public partial class lunch : Page
+    public partial class dinner : Page
     {
         private Frame mainframe;
         SerialPort serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
-        String[] btnNames = { "Rice", "VEG 1", "VEG 2", "VEG 3", "VEG 4", "VEG 5", "Fish", "Egg", "Chicken", "Fish", "Egg", "Chicken", "Coke", "Ginger beer", "Fruit salad", "Fruit juice" };
+        String[] btnNames = { "Rice", "String Hoppers", "Noodles", "Kiribath", "VEG 1", "VEG 2", "Fish", "Egg", "Chicken", "Fish", "Egg", "Chicken", "Coke", "Ginger beer", "Fruit salad", "Fruit juice" };
         int[] priceItem = { 50, 30, 30, 30, 30, 30, 40, 50, 60, 40, 50, 60, 40, 40, 70, 70 };
         int totalprice;
         Boolean[] buttonArrayClick = new Boolean[16];
@@ -40,7 +40,7 @@ namespace CanteenWPF
                 buttonArrayClick[i] = false;
             }
         }
-        public lunch(Frame mainframe)
+        public dinner(Frame mainframe)
         {
             InitializeComponent();
             this.mainframe = mainframe;
@@ -76,7 +76,7 @@ namespace CanteenWPF
                 newBtn.Margin = new Thickness(0, 20, 0, 0);
                 newBtn.Click += new RoutedEventHandler(newBtn_Click);
 
-                if (i < 1)
+                if (i < 4)
                 {
                     panel1.Children.Add(newBtn);
                 }
@@ -129,6 +129,11 @@ namespace CanteenWPF
                 btn.Background = null;
             }
 
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainframe.Navigate(new MainPage(mainframe));
         }
 
 

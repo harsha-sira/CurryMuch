@@ -29,7 +29,17 @@ namespace CanteenWPF
 
         private void breakfastBtn_Click(object sender, RoutedEventArgs e)
         {
+            mainframe.Navigate(new breakfast(mainframe));
+        }
+
+        private void lunchBtn_Click(object sender, RoutedEventArgs e)
+        {
             mainframe.Navigate(new lunch(mainframe));
+        }
+
+        private void dinnerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(new dinner(mainframe));
         }
     }
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\App.xaml
-3-292733441
+6857028508
 
-71561364194
+10933706195
 14-2089643716
-lunch.xaml;MainPage.xaml;MainWindow.xaml;
+views\dinner.xaml;views\breakfast.xaml;views\lunch.xaml;views\payment.xaml;views\MainPage.xaml;MainWindow.xaml;
 
 False
 

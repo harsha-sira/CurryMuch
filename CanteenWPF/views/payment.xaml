@@ -1,0 +1,20 @@
+﻿<Page x:Class="CanteenWPF.Payment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+      
+	Title="PaymentPage">
+
+    <Grid Background="#FFF9F4F4" Width="1200" Height="800">
+        <Label Content="TAP YOUR CARD" HorizontalAlignment="Left" Margin="836,374,0,0" VerticalAlignment="Top" Width="300" FontWeight="Bold" FontSize="36"/>
+        <Label Content="Total Cost :" HorizontalAlignment="Left" Margin="60,48,0,0" VerticalAlignment="Top" Width="394" FontWeight="Bold" FontSize="72" Height="108"/>
+        <Label x:Name="priceLable" Content="0 RS /=" HorizontalAlignment="Left" Margin="459,48,0,0" VerticalAlignment="Top" Width="286" FontWeight="ExtraBold" FontSize="72" Height="108" Foreground="#FFF90808"/>
+        <Label Content="User :" HorizontalAlignment="Left" Margin="60,204,0,0" VerticalAlignment="Top" Width="254" FontWeight="Bold" FontSize="72" Height="108"/>
+        <Label x:Name="usernameLable" Content="Not Detected " HorizontalAlignment="Left" Margin="288,204,0,0" VerticalAlignment="Top" Width="516" FontWeight="ExtraBold" FontSize="72" Height="108" Foreground="#FF08F960" RenderTransformOrigin="0.313,2"/>
+        <Label x:Name="outputLable" Content="" HorizontalAlignment="Left" Margin="154,518,0,0" VerticalAlignment="Top" Width="948" FontWeight="Bold" FontSize="48" Height="196"/>
+        <Label x:Name="lb" Content="" HorizontalAlignment="Left" Margin="836,48,0,0" VerticalAlignment="Top" Height="321" Width="300"/>
+    </Grid>
+</Page>
