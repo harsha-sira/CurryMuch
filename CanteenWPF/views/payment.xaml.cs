@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,28 +31,22 @@ namespace CanteenWPF
         String cardnumber = "";
         bool auth=false, returnTotop = false;
         int status;
-
-        SerialPort serialPort1;
         int counter =0;
+        static SerialPort serialPort1=null;
+        
         public Payment(Frame mainframe, int total,int status) //staus is used to identify lunch,breakfast and dinner
         {
-
-            if(counter==0){
-
-                serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
-                counter ++ ;
-            } 
-       
-        
-           
+          
+            if(serialPort1==null)
+                 serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
             //serial port coonection
          //   serialPort1.PortName = "COM18";
 
             if (!serialPort1.IsOpen)
             {
+
                 try
                 {
-                    
                     serialPort1.Open();
                 }
                 catch
@@ -94,13 +89,16 @@ namespace CanteenWPF
         private void checker()
         {
             String temp = "";
+            bool isrunning = true;
 
-            while (true)
+            while (isrunning)
             {
                 try
                 {
-                   
-                    temp = serialPort1.ReadLine();
+
+                  //  temp = serialPort1.ReadLine();
+                   temp = "1.2.3.4.5.6.7.8.";
+                    serialPort1.Close();
                     Debug.WriteLine(temp);
                 }
                 catch (Exception e)
@@ -139,10 +137,20 @@ namespace CanteenWPF
                     request.ContentLength = data.Length;
 
                     //should check internet connectivity
+                    if (NetworkInterface.GetIsNetworkAvailable() != true)
+                    {
+                        outputLable.Dispatcher.Invoke(() => outputLable.Content = "No Network connection ");
+                        Thread.Sleep(1000);
+                        Environment.Exit(0);
+                        
+                    }
+
                     using (var stream = request.GetRequestStream())
                     {
                         stream.Write(data, 0, data.Length);
                     }
+                    
+                    
 
                     var response = (HttpWebResponse)request.GetResponse();
 
@@ -168,12 +176,12 @@ namespace CanteenWPF
                         if (Int32.Parse(amount) < 0)
                         {
                             outputLable.Dispatcher.Invoke(() => outputLable.Content = "Paid Sucessfully ! Thank you ! \n RECHARGE YOUR ACCOUNT QUICKLY !!!!" +
-                                                    "\n Your remaining account Balance is " +amount + " RS /=");
+                                                    "\n Your remaining Balance is " +amount + " RS /=");
                         }
                         else
                         {
                             outputLable.Dispatcher.Invoke(() => outputLable.Content = "Paid Sucessfully ! Thank you ! " +
-                                                     "\nYour remaining= Balance is " +amount + " RS /=");
+                                                     "\nYour remaining Balance is " +amount + " RS /=");
                         }
 
 
@@ -200,18 +208,29 @@ namespace CanteenWPF
                     {
                         this.Dispatcher.Invoke((Action)(() =>
                         {
-                            
+                            Debug.WriteLine("Finish");
                             mainframe.Navigate(new breakfast(mainframe));
+                            isrunning = false;
                         }));
                         
                     }
                     else if (status == 2)
                     {
-                        mainframe.Navigate(new lunch(mainframe));
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            Debug.WriteLine("Finish");
+                            mainframe.Navigate(new lunch(mainframe));
+                            isrunning = false;
+                        }));
                     }
                     else
                     {
-                        mainframe.Navigate(new dinner(mainframe)); 
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            Debug.WriteLine("Finish");
+                            mainframe.Navigate(new dinner(mainframe));
+                            isrunning = false;
+                        }));
                     }
                     
                    

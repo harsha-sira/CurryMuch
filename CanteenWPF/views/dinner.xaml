@@ -34,7 +34,7 @@
         <StackPanel x:Name="panel5" HorizontalAlignment="Left" Height="604" Margin="957,3,0,0" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2">
             <Label x:Name="vegLable3" Content="Bevarages" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" FontSize="24" FontWeight="Bold"/>
         </StackPanel>
-        <Button Grid.ColumnSpan="2" Content="Pay the bill" HorizontalAlignment="Left" Margin="957,649,0,0" VerticalAlignment="Top" Width="200" Height="68" FontWeight="Bold" FontSize="24" />
+        <Button Grid.ColumnSpan="2" Content="Pay the bill" HorizontalAlignment="Left" Margin="957,649,0,0" VerticalAlignment="Top" Width="200" Height="68" FontWeight="Bold" FontSize="24" Click="Button_Click" />
         <Button x:Name="backBtn" Content="Back" HorizontalAlignment="Left" Margin="42,697,0,0" VerticalAlignment="Top" Width="75" Click="backBtn_Click"/>
         
     </Grid>

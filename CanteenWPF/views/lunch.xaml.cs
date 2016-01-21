@@ -27,7 +27,7 @@ namespace CanteenWPF
         SerialPort serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
         String[] btnNames = { "Rice", "VEG 1", "VEG 2", "VEG 3", "VEG 4", "VEG 5", "Fish", "Egg", "Chicken", "Fish", "Egg", "Chicken", "Coke", "Ginger beer", "Fruit salad", "Fruit juice" };
         int[] priceItem = { 50, 30, 30, 30, 30, 30, 40, 50, 60, 40, 50, 60, 40, 40, 70, 70 };
-        int totalprice;
+        int totalprice =0 ;
         Boolean[] buttonArrayClick = new Boolean[16];
 
         /*
@@ -134,6 +134,11 @@ namespace CanteenWPF
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             this.mainframe.Navigate(new MainPage(mainframe));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainframe.Navigate(new Payment(mainframe, totalprice, 2));
         }
 
 
