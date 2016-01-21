@@ -27,28 +27,40 @@ namespace CanteenWPF
     {
         private Frame mainframe;
         int total = 0;
-        SerialPort serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
         String cardnumber = "";
         bool auth=false, returnTotop = false;
         int status;
-        
-        
+
+        SerialPort serialPort1;
+        int counter =0;
         public Payment(Frame mainframe, int total,int status) //staus is used to identify lunch,breakfast and dinner
         {
 
-           
+            if(counter==0){
 
+                serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
+                counter ++ ;
+            } 
+       
+        
+           
             //serial port coonection
-            //serialPort1.PortName = "COM18";
-            //try
-            //{
-            //    serialPort1.Open();
-            //}
-            //catch
-            //{
-            //    Debug.WriteLine("quit");
-            //    Environment.Exit(0);
-            //}
+         //   serialPort1.PortName = "COM18";
+
+            if (!serialPort1.IsOpen)
+            {
+                try
+                {
+                    
+                    serialPort1.Open();
+                }
+                catch
+                {
+                    Debug.WriteLine("quit");
+                    Environment.Exit(0);
+                }
+            }
+            
 
 
             Debug.WriteLine("afterquit");
@@ -73,6 +85,7 @@ namespace CanteenWPF
         private void threadCreator()
         {
             Thread mainThread = new Thread(new ThreadStart(checker));
+            mainThread.SetApartmentState(ApartmentState.STA);
             Debug.WriteLine("df");
             mainThread.Start();
         }
@@ -86,7 +99,9 @@ namespace CanteenWPF
             {
                 try
                 {
+                   
                     temp = serialPort1.ReadLine();
+                    Debug.WriteLine(temp);
                 }
                 catch (Exception e)
                 {
@@ -103,7 +118,7 @@ namespace CanteenWPF
                 }
 
                 //..............................
-                if (priceLable.Content!= "0 RS /=" && usernameLable.Content != "Not Detected ")
+                //if (priceLable.Content!= "0 RS /=" && usernameLable.Content != "Not Detected ")
                 {
                     Console.WriteLine("inside");
                     // send data to inernet
@@ -123,7 +138,7 @@ namespace CanteenWPF
                     request.ContentType = "application/x-www-form-urlencoded";
                     request.ContentLength = data.Length;
 
-                    
+                    //should check internet connectivity
                     using (var stream = request.GetRequestStream())
                     {
                         stream.Write(data, 0, data.Length);
@@ -152,13 +167,13 @@ namespace CanteenWPF
 
                         if (Int32.Parse(amount) < 0)
                         {
-                            outputLable.Content = "Paid Sucessfully ! Thank you ! \n RECHARGE YOUR ACCOUNT QUICKLY !!!!"+
-                                                    "Your remaining account Balance is "+ amount + " RS /=";
+                            outputLable.Dispatcher.Invoke(() => outputLable.Content = "Paid Sucessfully ! Thank you ! \n RECHARGE YOUR ACCOUNT QUICKLY !!!!" +
+                                                    "\n Your remaining account Balance is " +amount + " RS /=");
                         }
                         else
                         {
-                            outputLable.Content = "Paid Sucessfully ! Thank you ! "+
-                                                    "Your remaining account Balance is "+ amount + " RS /=";
+                            outputLable.Dispatcher.Invoke(() => outputLable.Content = "Paid Sucessfully ! Thank you ! " +
+                                                     "\nYour remaining= Balance is " +amount + " RS /=");
                         }
 
 
@@ -166,8 +181,8 @@ namespace CanteenWPF
                     else
                     {
                         returnTotop = true;
-                        outputLable.Content = "Sorry ! INVALID CARD. ";
-
+                        outputLable.Dispatcher.Invoke(() => outputLable.Content = "Sorry ! INVALID CARD. ");
+                        
                     }
 
                     auth = false;
@@ -179,9 +194,16 @@ namespace CanteenWPF
                     Thread.Sleep(5000);
                     total = 0;
                     returnTotop = false;
+                   
                     if (status == 1)
+
                     {
-                        mainframe.Navigate(new breakfast(mainframe));
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            
+                            mainframe.Navigate(new breakfast(mainframe));
+                        }));
+                        
                     }
                     else if (status == 2)
                     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace CanteenWPF
     public partial class MainPage : Page
     {
         private Frame mainframe;
+        
         public MainPage(Frame mainframe)
         {
             InitializeComponent();
