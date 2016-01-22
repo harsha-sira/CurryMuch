@@ -32,13 +32,13 @@ namespace CanteenWPF
         bool auth=false, returnTotop = false;
         int status;
         int counter =0;
-        static SerialPort serialPort1=null;
+       static SerialPort serialPort1=null;
         
         public Payment(Frame mainframe, int total,int status) //staus is used to identify lunch,breakfast and dinner
         {
-          
-            if(serialPort1==null)
-                 serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
+
+            if (serialPort1 == null)
+                serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
             //serial port coonection
          //   serialPort1.PortName = "COM18";
 
@@ -96,8 +96,8 @@ namespace CanteenWPF
                 try
                 {
 
-                  //  temp = serialPort1.ReadLine();
-                   temp = "1.2.3.4.5.6.7.8.";
+                    temp = serialPort1.ReadLine();
+                  // temp = "1.2.3.4.5.6.7.8.";
                     serialPort1.Close();
                     Debug.WriteLine(temp);
                 }

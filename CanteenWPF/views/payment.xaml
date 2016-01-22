@@ -8,7 +8,7 @@
       
 	Title="PaymentPage">
 
-    <Grid Background="#FFF9F4F4" Width="1200" Height="800">
+    <Grid Background="LightGoldenrodYellow" Width="1200" Height="800">
         <Label Content="TAP YOUR CARD" HorizontalAlignment="Left" Margin="836,374,0,0" VerticalAlignment="Top" Width="300" FontWeight="Bold" FontSize="36"/>
         <Label Content="Total Cost :" HorizontalAlignment="Left" Margin="60,48,0,0" VerticalAlignment="Top" Width="394" FontWeight="Bold" FontSize="72" Height="108"/>
         <Label x:Name="priceLable" Content="0 RS /=" HorizontalAlignment="Left" Margin="459,48,0,0" VerticalAlignment="Top" Width="286" FontWeight="ExtraBold" FontSize="72" Height="108" Foreground="#FFF90808"/>

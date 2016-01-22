@@ -64,13 +64,16 @@ namespace CanteenWPF
                 System.Windows.Controls.Button newBtn = new Button();
                 System.Windows.Controls.Button newBtn1 = new Button();
 
+                Style style = this.FindResource("MyButtonStyle") as Style;
+
                 newBtn.Content = btnNames[i];
-                newBtn.Background = null;
+                newBtn.Background = Brushes.LightSeaGreen;
                 newBtn.Name = "Button" + i.ToString();
                 newBtn.FontSize = 24;
                 newBtn.FontStyle = FontStyles.Normal;
                 newBtn.Width = 200;
                 newBtn.Tag = i;
+                newBtn.Style = style;
                 newBtn.Height = 70;
                 // Margin = new Thickness(50);
                 newBtn.Margin = new Thickness(0, 20, 0, 0);
@@ -112,7 +115,7 @@ namespace CanteenWPF
             ImageBrush brush = new ImageBrush();
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri("img/tick.png", UriKind.RelativeOrAbsolute);
+            bitmap.UriSource = new Uri("img/choosed.png", UriKind.RelativeOrAbsolute);
             bitmap.EndInit();
             brush.ImageSource = bitmap;
 
@@ -126,7 +129,7 @@ namespace CanteenWPF
             {
                 buttonArrayClick[i] = false;
                 totalprice -= priceItem[i];
-                btn.Background = null;
+                btn.Background = Brushes.LightSeaGreen;
             }
 
         }
