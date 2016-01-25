@@ -38,23 +38,37 @@ namespace CanteenWPF
         {
 
             if (serialPort1 == null)
-                serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
+            {
+                foreach (string s in SerialPort.GetPortNames())
+                {
+                    serialPort1 = new SerialPort(s, 9600, Parity.None, 8, StopBits.One);
+                    if (!serialPort1.IsOpen)
+                    {
+
+                        try
+                        {
+                            serialPort1.Open();
+
+                            Debug.WriteLine(s);
+                            break;
+                        }
+                        catch
+                        {
+                            continue;
+                            
+                        }
+                    }
+
+                }
+                
+            }
+
+
+            
             //serial port coonection
          //   serialPort1.PortName = "COM18";
 
-            if (!serialPort1.IsOpen)
-            {
-
-                try
-                {
-                    serialPort1.Open();
-                }
-                catch
-                {
-                    Debug.WriteLine("quit");
-                    Environment.Exit(0);
-                }
-            }
+            
             
 
 
@@ -76,6 +90,7 @@ namespace CanteenWPF
          // outputLable.Content = "wada";
             threadCreator();
         }
+
 
         private void threadCreator()
         {
