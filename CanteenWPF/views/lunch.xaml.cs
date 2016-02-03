@@ -24,11 +24,11 @@ namespace CanteenWPF
     public partial class lunch : Page
     {
         private Frame mainframe;
-        SerialPort serialPort1 = new SerialPort("COM18", 9600, Parity.None, 8, StopBits.One);
         String[] btnNames = { "Rice", "VEG 1", "VEG 2", "VEG 3", "VEG 4", "VEG 5", "Fish", "Egg", "Chicken", "Fish", "Egg", "Chicken", "Coke", "Ginger beer", "Fruit salad", "Fruit juice" };
         int[] priceItem = { 50, 30, 30, 30, 30, 30, 40, 50, 60, 40, 50, 60, 40, 40, 70, 70 };
         int totalprice =0 ;
         Boolean[] buttonArrayClick = new Boolean[16];
+        ImageBrush brush = new ImageBrush();
 
         /*
          *clear the array  
@@ -45,19 +45,7 @@ namespace CanteenWPF
             InitializeComponent();
             this.mainframe = mainframe;
             mainframe.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            //serial port coonection
-            //serialPort1.PortName = "COM18";
-            //try
-            //{
-            //    serialPort1.Open();
-            //}
-            //catch
-            //{
-            //    Environment.Exit(0);
-            //}
-
-            //Thread mainThread = new Thread(new ThreadStart(checker));
-            //mainThread.Start();
+           
 
             for (int i = 0; i < 16; i++)
             {
@@ -65,16 +53,33 @@ namespace CanteenWPF
                 System.Windows.Controls.Button newBtn1 = new Button();
 
                 Style style = this.FindResource("MyButtonStyle") as Style;
+                lunchnextbtn.Style = style;
 
-                newBtn.Content = btnNames[i];
-                newBtn.Background = Brushes.LightSeaGreen;
+                newBtn.Content = btnNames[i] + "\n" + priceItem[i];
+                if (btnNames[i].Length >= 7)
+                {
+                    newBtn.Content = btnNames[i] + "\n    " + priceItem[i];
+                }
+                
+                newBtn.FontWeight = FontWeights.Bold;
+                newBtn.FontFamily = new FontFamily("Arial Black");
+                
+                // 
+                BitmapImage bitmap = new BitmapImage();
+
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri("..//..//Resources/ButtonBackground.png", UriKind.RelativeOrAbsolute);
+                bitmap.EndInit();
+                brush.ImageSource = bitmap;
+                newBtn.Background = brush;
+
                 newBtn.Name = "Button" + i.ToString();
                 newBtn.FontSize = 24;
                 newBtn.FontStyle = FontStyles.Normal;
                 newBtn.Width = 200;
                 newBtn.Tag = i;
                 newBtn.Style = style;
-                newBtn.Height = 70;
+                newBtn.Height = 100;
                 // Margin = new Thickness(50);
                 newBtn.Margin = new Thickness(0, 20, 0, 0);
                 newBtn.Click += new RoutedEventHandler(newBtn_Click);
@@ -112,24 +117,24 @@ namespace CanteenWPF
             Button btn = sender as Button;
             int i = (int)btn.Tag;
 
-            ImageBrush brush = new ImageBrush();
+            ImageBrush brush1 = new ImageBrush();
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri("img/choosed.png", UriKind.RelativeOrAbsolute);
+            bitmap.UriSource = new Uri("..//..//Resources/tick.png", UriKind.RelativeOrAbsolute);
             bitmap.EndInit();
-            brush.ImageSource = bitmap;
+            brush1.ImageSource = bitmap;
 
             if (!buttonArrayClick[i])
             {
                 buttonArrayClick[i] = true;
                 totalprice += priceItem[i];
-                btn.Background = brush;
+                btn.Background = brush1;
             }
             else
             {
                 buttonArrayClick[i] = false;
                 totalprice -= priceItem[i];
-                btn.Background = Brushes.LightSeaGreen;
+                btn.Background = brush;
             }
 
         }

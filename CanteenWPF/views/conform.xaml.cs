@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,22 +17,29 @@ using System.Windows.Shapes;
 namespace CanteenWPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for conform.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    /// 
+    
+    public partial class conform : Page
     {
+        private Frame mainframe;
+        int status;
+        int totalprice = 0;
        
-        
-        public MainWindow()
+        public conform(Frame mainframe,String[] choosed,int[] price,int status,int total)
         {
-            
             InitializeComponent();
-         //   WindowState = WindowState.Maximized;
-        //    WindowStyle = WindowStyle.None;
-            this.Background = Brushes.LightGoldenrodYellow;
-            _mainFrame.Navigate(new MainPage(this._mainFrame));  
+            this.mainframe = mainframe;
         }
 
-              
+        private void conformbackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainframe.Navigate(new breakfast(mainframe));
+        }
+
+        
+
+
     }
 }

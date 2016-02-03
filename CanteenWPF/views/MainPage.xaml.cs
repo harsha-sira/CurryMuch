@@ -26,7 +26,12 @@ namespace CanteenWPF
         public MainPage(Frame mainframe)
         {
             InitializeComponent();
+            Style style = this.FindResource("MyButtonStyle") as Style;
             this.mainframe = mainframe;
+            breakfastBtn.Style = style;
+            lunchBtn.Style = style;
+            dinnerBtn.Style = style;
+
         }
 
         private void breakfastBtn_Click(object sender, RoutedEventArgs e)

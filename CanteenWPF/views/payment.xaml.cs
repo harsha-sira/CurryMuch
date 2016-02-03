@@ -29,10 +29,14 @@ namespace CanteenWPF
         private Frame mainframe;
         int total = 0;
         String cardnumber = "";
-        bool auth=false, returnTotop = false;
+        bool returnTotop = false;
         int status;
-        int counter =0;
-       static SerialPort serialPort1=null;
+        String amount;
+        static SerialPort serialPort1=null;
+        Thread mainThread;
+        bool isrunning = true;
+        bool closeserialport = false;
+        String temp = "";
         
         public Payment(Frame mainframe, int total,int status) //staus is used to identify lunch,breakfast and dinner
         {
@@ -41,6 +45,7 @@ namespace CanteenWPF
             {
                 foreach (string s in SerialPort.GetPortNames())
                 {
+                  
                     serialPort1 = new SerialPort(s, 9600, Parity.None, 8, StopBits.One);
                     if (!serialPort1.IsOpen)
                     {
@@ -49,18 +54,18 @@ namespace CanteenWPF
                         {
                             serialPort1.Open();
 
-                            Debug.WriteLine(s);
+                            Debug.WriteLine("open");
                             break;
                         }
                         catch
                         {
                             continue;
-                            
+
                         }
                     }
 
                 }
-                
+
             }
 
 
@@ -68,7 +73,8 @@ namespace CanteenWPF
             //serial port coonection
          //   serialPort1.PortName = "COM18";
 
-            
+        //    serialPort1 = new SerialPort("COM10", 9600, Parity.None, 8, StopBits.One);
+           
             
 
 
@@ -78,14 +84,6 @@ namespace CanteenWPF
             this.total = total;
             this.status = status;
 
-            ImageBrush brush = new ImageBrush();
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri("img/nfc.png", UriKind.RelativeOrAbsolute);
-            bitmap.EndInit();
-            brush.ImageSource = bitmap;
-            lb.Background = brush;
-
             priceLable.Content = total.ToString() + " RS /=";
          // outputLable.Content = "wada";
             threadCreator();
@@ -94,7 +92,7 @@ namespace CanteenWPF
 
         private void threadCreator()
         {
-            Thread mainThread = new Thread(new ThreadStart(checker));
+            mainThread = new Thread(new ThreadStart(checker));
             mainThread.SetApartmentState(ApartmentState.STA);
             Debug.WriteLine("df");
             mainThread.Start();
@@ -103,35 +101,76 @@ namespace CanteenWPF
         //////////////////////////////
         private void checker()
         {
-            String temp = "";
-            bool isrunning = true;
+            Debug.WriteLine("ddf"); //to del
 
+           
             while (isrunning)
             {
-                try
-                {
-
-                    temp = serialPort1.ReadLine();
-                  // temp = "1.2.3.4.5.6.7.8.";
-                    serialPort1.Close();
-                    Debug.WriteLine(temp);
-                }
-                catch (Exception e)
-                {
-                    Environment.Exit(0);
-                }
-
-                if (!temp.Equals(""))
-                {
+                Debug.WriteLine("running"); // to del
+               
+                    //try
+                    //{
+                    temp += serialPort1.ReadExisting();
+                    Debug.WriteLine(temp); //to del
+                  //  temp += (char)serialPort1.ReadChar();
+                    if (temp.Contains("*"))
+                    {
+                        serialPort1.Close();
+                        serialPort1 = null;
+                        Debug.WriteLine("closed serialport"); // to del
+                        closeserialport = true;
+                        
+                       
+                    }
                     
+                    // temp = "1.2.3.4.5.6.7.8.";
+                    
+
+                //}
+                //catch (Exception ex)
+                //{
+                //    Environment.Exit(0);
+                //}
+
+                
+                if (!temp.Equals("") && closeserialport)
+                {
+
+                    Debug.WriteLine("length 16"); // to del
+                   Debug.WriteLine("card->"+ temp);
                     cardnumber = temp;
+                    cardnumber = cardnumber.Substring(0, cardnumber.Length - 1);
+                    Debug.WriteLine("card"+ cardnumber); //to del
                     outputLable.Dispatcher.Invoke(() => outputLable.Content = "Please Wait . . . . .");
-                    auth = true;
+                    
                     temp = "";
+
+                    if (paymentgrid.Dispatcher.Thread == System.Threading.Thread.CurrentThread)
+                    {
+                        imagebrushdrawing();
+                        usernameLable.Visibility = Visibility.Visible;
+                        cancelBtn.Visibility = Visibility.Hidden; 
+                        
+
+                    }
+                    else
+                    {
+                        paymentgrid.Dispatcher.BeginInvoke((System.Threading.ThreadStart)(delegate
+                        {
+                            imagebrushdrawing();
+                            usernameLable.Visibility = Visibility.Visible;
+                            cancelBtn.Visibility = Visibility.Hidden; 
+                        
+                        }));
+                    }
+                   
                 }
+
+              //  Debug.WriteLine(cardnumber); //to del
+              // Debug.WriteLine(total); //to del
 
                 //..............................
-                //if (priceLable.Content!= "0 RS /=" && usernameLable.Content != "Not Detected ")
+                if ( cardnumber!="" && total!= 0)
                 {
                     Console.WriteLine("inside");
                     // send data to inernet
@@ -181,7 +220,7 @@ namespace CanteenWPF
                         String username = responseString.Substring(Start, End - Start);
                         Start = responseString.IndexOf("###@#", 0) + 5;
                         End = responseString.IndexOf("###@@", Start);
-                        String amount = responseString.Substring(Start, End - Start);
+                        amount = responseString.Substring(Start, End - Start);
 
                         usernameLable.Dispatcher.Invoke((() => usernameLable.Content = username));
                       //  label13.Invoke((MethodInvoker)(() => label13.Text = amount));
@@ -190,16 +229,27 @@ namespace CanteenWPF
 
                         if (Int32.Parse(amount) < 0)
                         {
-                            outputLable.Dispatcher.Invoke(() => outputLable.Content = "Paid Sucessfully ! Thank you ! \n RECHARGE YOUR ACCOUNT QUICKLY !!!!" +
-                                                    "\n Your remaining Balance is " +amount + " RS /=");
+                           outputLable.Dispatcher.Invoke(() => outputLable.Content = "PLEASE RECHARGE QUICKLY !");
+                           priceLable.Dispatcher.Invoke(() => priceLable.Content = amount+ " RS/=");
                         }
                         else
                         {
-                            outputLable.Dispatcher.Invoke(() => outputLable.Content = "Paid Sucessfully ! Thank you ! " +
-                                                     "\nYour remaining Balance is " +amount + " RS /=");
+                           outputLable.Dispatcher.Invoke(() => outputLable.Content = "Paid Sucessfully ! Thank you ! ");
+                           priceLable.Dispatcher.Invoke(() => priceLable.Content = amount + " RS/=");
                         }
 
 
+                    }
+                    else if(responseString.Contains("no balance"))
+                    {
+                        int Start = responseString.IndexOf("no balance", 0) + 10;
+                        int End = responseString.IndexOf("@@", Start);
+
+                        outputLable.Dispatcher.Invoke(() => outputLable.Content = "You can't buy.\nPLEASE RECHARGE QUICKLY ! ");
+                        
+                        amount = responseString.Substring(Start,End - Start);
+                        priceLable.Dispatcher.Invoke(() => priceLable.Content = amount + " RS/=");
+                        returnTotop = true;
                     }
                     else
                     {
@@ -208,7 +258,7 @@ namespace CanteenWPF
                         
                     }
 
-                    auth = false;
+                    
 
                 }
                 if (returnTotop)
@@ -217,42 +267,98 @@ namespace CanteenWPF
                     Thread.Sleep(5000);
                     total = 0;
                     returnTotop = false;
-                   
-                    if (status == 1)
 
-                    {
-                        this.Dispatcher.Invoke((Action)(() =>
-                        {
-                            Debug.WriteLine("Finish");
-                            mainframe.Navigate(new breakfast(mainframe));
-                            isrunning = false;
-                        }));
-                        
-                    }
-                    else if (status == 2)
-                    {
-                        this.Dispatcher.Invoke((Action)(() =>
-                        {
-                            Debug.WriteLine("Finish");
-                            mainframe.Navigate(new lunch(mainframe));
-                            isrunning = false;
-                        }));
-                    }
-                    else
-                    {
-                        this.Dispatcher.Invoke((Action)(() =>
-                        {
-                            Debug.WriteLine("Finish");
-                            mainframe.Navigate(new dinner(mainframe));
-                            isrunning = false;
-                        }));
-                    }
-                    
+
+                    returnToPreviousPanel();
+                   
                    
 
                 }
 
                 Thread.Sleep(10);
+            }
+
+            if (!isrunning)
+            {
+                try
+                {
+                    serialPort1.Close();
+                    serialPort1 = null;
+                }catch(Exception ex){
+
+                }
+                Debug.WriteLine("closed serialport special"); // to del
+                isrunning = true;
+                mainThread.Abort();
+            }
+
+        }
+
+        void imagebrushdrawing()
+        {
+            BitmapImage bitmap = new BitmapImage();
+            ImageBrush brush = new ImageBrush();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("..//..//Resources/backgroundConfirm.png", UriKind.RelativeOrAbsolute);
+            bitmap.EndInit();
+            brush.ImageSource = bitmap;
+            paymentgrid.Background = brush;
+        }
+        void imagebrushd()
+        {
+            BitmapImage bitmap = new BitmapImage();
+            ImageBrush brush = new ImageBrush();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("..//..//Resources/backgroundPay.png", UriKind.RelativeOrAbsolute);
+            bitmap.EndInit();
+            brush.ImageSource = bitmap;
+            paymentgrid.Background = brush;
+        }
+
+        private void cancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            isrunning = false;
+            returnToPreviousPanel();
+            total = 0;
+            Debug.WriteLine(isrunning+"......."); // to del
+            
+        }
+
+        public void returnToPreviousPanel()
+        {
+            if (status == 1)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    Debug.WriteLine("Finish");
+                    mainframe.Navigate(new breakfast(mainframe));
+                    isrunning = false;
+
+                }));
+
+
+            }
+            else if (status == 2)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    Debug.WriteLine("Finish");
+                    
+                    mainframe.Navigate(new lunch(mainframe));
+                    isrunning = false;
+                    //mainThread.Abort();
+                }));
+            }
+            else
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    Debug.WriteLine("Finish");
+                    mainframe.Navigate(new dinner(mainframe));
+                    isrunning = false;
+                }));
+
 
             }
         }

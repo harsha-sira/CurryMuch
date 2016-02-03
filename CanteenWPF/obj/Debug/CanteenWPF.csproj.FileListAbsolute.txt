@@ -16,7 +16,6 @@ C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenW
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\CanteenWPF.pdb
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\bin\Debug\CanteenWPF.exe
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\bin\Debug\CanteenWPF.pdb
-C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\CanteenWPF.csprojResolveAssemblyReference.cache
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\MainWindow.baml
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\MainWindow.g.cs
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\App.g.cs
@@ -34,3 +33,6 @@ C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenW
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\dinner.g.cs
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\payment.baml
 C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\payment.g.cs
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\conform.baml
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\views\conform.g.cs
+C:\Users\hali\Documents\Visual Studio 2013\Projects\CurryMuch\CurryMuch\CanteenWPF\obj\Debug\CanteenWPF.csprojResolveAssemblyReference.cache

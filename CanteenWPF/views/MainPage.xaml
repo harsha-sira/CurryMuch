@@ -5,13 +5,42 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
-      
 	Title="MainPage">
+    <Page.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-    <Grid Background="LightGoldenrodYellow" Width="1200" Height="800">
-        <Button x:Name="breakfastBtn" Content="Breakfast" HorizontalAlignment="Left" Margin="436,186,0,0" VerticalAlignment="Top" Width="308" Height="106" FontSize="48" FontWeight="Bold" Click="breakfastBtn_Click"/>
-        <Button x:Name="lunchBtn" Content="Lunch" HorizontalAlignment="Left" Margin="436,344,0,0" VerticalAlignment="Top" Width="308" Height="106" FontSize="48" FontWeight="Bold" Click="lunchBtn_Click"/>
-        <Button x:Name="dinnerBtn" Content="Dinner" HorizontalAlignment="Left" Margin="436,498,0,0" VerticalAlignment="Top" Width="308" Height="106" FontSize="48" FontWeight="Bold" Click="dinnerBtn_Click"/>
+    </Page.Resources>
+
+    <Grid Width="1200" Height="800">
+        <Grid.Background>
+            <ImageBrush ImageSource="/CanteenWPF;component/Resources/background.png"/>
+        </Grid.Background>
+        <Button x:Name="breakfastBtn" Content="" HorizontalAlignment="Left"  Margin="201,294,0,0" VerticalAlignment="Top" Width="350" Height="180" FontSize="48" FontWeight="Bold" Click="breakfastBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/CanteenWPF;component/Resources/breakfast.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="lunchBtn" Content="" HorizontalAlignment="Left" Margin="648,294,0,0" VerticalAlignment="Top" Width="350" Height="180" FontSize="48" FontWeight="Bold" Click="lunchBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/CanteenWPF;component/Resources/lunch.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="dinnerBtn" Content="" HorizontalAlignment="Left" Margin="201,479,0,0" VerticalAlignment="Top" Width="350" Height="180" FontSize="48" FontWeight="Bold" Click="dinnerBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/CanteenWPF;component/Resources/dinner.png"/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Page>

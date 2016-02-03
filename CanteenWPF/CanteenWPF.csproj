@@ -58,6 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="views\conform.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="views\dinner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,6 +89,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="views\conform.xaml.cs">
+      <DependentUpon>conform.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\dinner.xaml.cs">
       <DependentUpon>dinner.xaml</DependentUpon>
@@ -134,18 +141,51 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\nfc.png" />
+    <Resource Include="Resources\nfc.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\nfctap.jpg" />
+    <Resource Include="Resources\nfctap.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tick.png" />
+    <Resource Include="Resources\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\wallpaper-1089283.jpg" />
+    <Resource Include="Resources\windowsBack.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\breakfast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\lunch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dinner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bevaragesLabel.png" />
+    <Resource Include="Resources\extraLable.png" />
+    <Resource Include="Resources\mainItemlabel.png" />
+    <Resource Include="Resources\nonvegLable.png" />
+    <Resource Include="Resources\vegitableLable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ButtonBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\backgroundPay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\backgroundConfirm.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
