@@ -28,6 +28,7 @@ namespace CanteenWPF
         String[] btnNames = { "Rice", "String Hoppers", "Noodles", "Kiribath", "VEG 1", "VEG 2", "Fish", "Egg", "Chicken", "Fish", "Egg", "Chicken", "Coke", "Ginger beer", "Fruit salad", "Fruit juice" };
         int[] priceItem = { 50, 30, 30, 30, 30, 30, 40, 50, 60, 40, 50, 60, 40, 40, 70, 70 };
         int totalprice =0;
+
         Boolean[] buttonArrayClick = new Boolean[16];
         ImageBrush brush = new ImageBrush();
 

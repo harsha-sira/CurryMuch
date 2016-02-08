@@ -108,36 +108,34 @@ namespace CanteenWPF
             {
                 Debug.WriteLine("running"); // to del
                
-                    //try
-                    //{
-                    temp += serialPort1.ReadExisting();
-                    Debug.WriteLine(temp); //to del
+                    try
+                    { 
+                        temp += serialPort1.ReadExisting();
+                        Debug.WriteLine(temp); //to del
                   //  temp += (char)serialPort1.ReadChar();
-                    if (temp.Contains("*"))
+                        if (temp.Contains("*"))
+                        {
+                            serialPort1.Close();
+                            serialPort1 = null;
+                            Debug.WriteLine("closed serialport"); // to del
+                            closeserialport = true;
+                        }
+
+                    }
+                    catch (Exception ex)
                     {
-                        serialPort1.Close();
-                        serialPort1 = null;
-                        Debug.WriteLine("closed serialport"); // to del
-                        closeserialport = true;
-                        
-                       
+                        Environment.Exit(0);
                     }
                     
-                    // temp = "1.2.3.4.5.6.7.8.";
-                    
-
-                //}
-                //catch (Exception ex)
-                //{
-                //    Environment.Exit(0);
-                //}
 
                 
-                if (!temp.Equals("") && closeserialport)
+
+                
+                if (!temp.Equals("") && closeserialport && total != 0)
                 {
 
                     Debug.WriteLine("length 16"); // to del
-                   Debug.WriteLine("card->"+ temp);
+                    Debug.WriteLine("card->"+ temp);
                     cardnumber = temp;
                     cardnumber = cardnumber.Substring(0, cardnumber.Length - 1);
                     Debug.WriteLine("card"+ cardnumber); //to del
@@ -163,7 +161,29 @@ namespace CanteenWPF
                         
                         }));
                     }
-                   
+
+                }
+                else if (total == 0)
+                {
+
+                    if (paymentgrid.Dispatcher.Thread == System.Threading.Thread.CurrentThread)
+                    {
+                        imagebrushdrawing();
+                      //  usernameLable.Visibility = Visibility.Visible;
+                        cancelBtn.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        paymentgrid.Dispatcher.BeginInvoke((System.Threading.ThreadStart)(delegate
+                        {
+                            imagebrushdrawing();
+                        //    usernameLable.Visibility = Visibility.Visible;
+                            cancelBtn.Visibility = Visibility.Hidden;
+                        }));
+                    }
+
+                    outputLable.Dispatcher.Invoke(() => outputLable.Content = "No item selected");
+                    returnTotop = true;
                 }
 
               //  Debug.WriteLine(cardnumber); //to del
@@ -258,9 +278,10 @@ namespace CanteenWPF
                         
                     }
 
-                    
+
 
                 }
+                
                 if (returnTotop)
                 {
                     

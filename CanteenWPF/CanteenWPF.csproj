@@ -186,6 +186,18 @@
   <ItemGroup>
     <Resource Include="Resources\backgroundConfirm.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\plus-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\plus-button-active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minus-button-active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minus-button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
