@@ -187,16 +187,19 @@
     <Resource Include="Resources\backgroundConfirm.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\minus-button-active.png" />
+    <Resource Include="Resources\minus-button.png" />
+    <Resource Include="Resources\plus-button-active.png" />
     <Resource Include="Resources\plus-button.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\plus-button-active.png" />
+    <Resource Include="Resources\wait.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\minus-button-active.png" />
+    <Resource Include="Resources\backbtn.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\minus-button.png" />
+    <Resource Include="Resources\cancel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

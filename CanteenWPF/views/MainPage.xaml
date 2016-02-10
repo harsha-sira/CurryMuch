@@ -41,6 +41,7 @@
                 <ImageBrush ImageSource="/CanteenWPF;component/Resources/dinner.png"/>
             </Button.Background>
         </Button>
+        <Button x:Name="exitBtn" Content="" HorizontalAlignment="Left" Margin="1007,77,0,0" VerticalAlignment="Top" Width="75" Click="exitBtn_Click" Visibility="Visible" Background="#FF662F2F" BorderBrush="#FF6C2424"/>
 
     </Grid>
 </Page>

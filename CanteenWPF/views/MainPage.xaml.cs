@@ -48,5 +48,10 @@ namespace CanteenWPF
         {
             mainframe.Navigate(new dinner(mainframe));
         }
+
+        private void exitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

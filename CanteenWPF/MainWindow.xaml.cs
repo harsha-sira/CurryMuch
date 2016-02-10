@@ -29,8 +29,8 @@ namespace CanteenWPF
         {
             
             InitializeComponent();
-         //   WindowState = WindowState.Maximized;
-        //    WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
             this.Background = Brushes.LightGoldenrodYellow;
             _mainFrame.Navigate(new MainPage(this._mainFrame));  
         }

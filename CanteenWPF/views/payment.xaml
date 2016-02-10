@@ -5,9 +5,24 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
-      
-	Title="PaymentPage">
+      Title="PaymentPage">
 
+    <Page.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+    
     <Grid x:Name="paymentgrid" Width="1200" Height="800">
         <Grid.Background>
             <ImageBrush ImageSource="/CanteenWPF;component/Resources/backgroundPay.png"/>
@@ -15,6 +30,10 @@
         <Label x:Name="priceLable" Content="0 RS /=" HorizontalAlignment="Left" Margin="598,574,0,0" VerticalAlignment="Top" Width="388" FontWeight="ExtraBold" FontSize="72" Height="100" Foreground="#FFF90808" RenderTransformOrigin="0.508,0.179" />
         <Label x:Name="usernameLable" Content="Not Detected " HorizontalAlignment="Left" Margin="510,243,0,0" VerticalAlignment="Top" Width="516" FontWeight="ExtraBold" FontSize="72" Height="108" Foreground="#FF08F960" RenderTransformOrigin="0.313,2" Visibility="Hidden"/>
         <Label x:Name="outputLable" Content="" HorizontalAlignment="Left" Margin="169,378,0,0" VerticalAlignment="Top" Width="948" FontWeight="Bold" FontSize="48" Height="196"/>
-        <Button x:Name="cancelBtn" Content="Cancel" HorizontalAlignment="Left" Margin="109,688,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="cancelBtn_Click"/>
+        <Button x:Name="cancelBtn" Content="" HorizontalAlignment="Left" Margin="109,688,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="cancelBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/CanteenWPF;component/Resources/cancel.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Page>

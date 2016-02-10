@@ -21,9 +21,7 @@ using System.Windows.Shapes;
 
 namespace CanteenWPF
 {
-    /// <summary>
-    /// Interaction logic for Payment.xaml
-    /// </summary>
+    
     public partial class Payment : Page
     {
         private Frame mainframe;
@@ -40,7 +38,19 @@ namespace CanteenWPF
         
         public Payment(Frame mainframe, int total,int status) //staus is used to identify lunch,breakfast and dinner
         {
+            
+            Debug.WriteLine("strated");
+            InitializeComponent();
+            mainframe.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            Style style = this.FindResource("MyButtonStyle") as Style;
+            cancelBtn.Style = style;
+            this.mainframe = mainframe;
+            this.total = total;
+            this.status = status;
 
+            /**
+             * connecting serial port using dynamically
+             * */
             if (serialPort1 == null)
             {
                 foreach (string s in SerialPort.GetPortNames())
@@ -68,24 +78,11 @@ namespace CanteenWPF
 
             }
 
-
-            
-            //serial port coonection
-         //   serialPort1.PortName = "COM18";
-
-        //    serialPort1 = new SerialPort("COM10", 9600, Parity.None, 8, StopBits.One);
+        //    serialPort1 = new SerialPort("COM10", 9600, Parity.None, 8, StopBits.One); //to del
            
-            
-
-
             Debug.WriteLine("afterquit");
-            InitializeComponent();
-            this.mainframe = mainframe;
-            this.total = total;
-            this.status = status;
-
+          
             priceLable.Content = total.ToString() + " RS /=";
-         // outputLable.Content = "wada";
             threadCreator();
         }
 
@@ -126,11 +123,7 @@ namespace CanteenWPF
                     {
                         Environment.Exit(0);
                     }
-                    
-
-                
-
-                
+                   
                 if (!temp.Equals("") && closeserialport && total != 0)
                 {
 
@@ -169,7 +162,7 @@ namespace CanteenWPF
                     if (paymentgrid.Dispatcher.Thread == System.Threading.Thread.CurrentThread)
                     {
                         imagebrushdrawing();
-                      //  usernameLable.Visibility = Visibility.Visible;
+                      //  usernameLable.Visibility = Visibility.Visible; //to del
                         cancelBtn.Visibility = Visibility.Hidden;
                     }
                     else
@@ -177,7 +170,7 @@ namespace CanteenWPF
                         paymentgrid.Dispatcher.BeginInvoke((System.Threading.ThreadStart)(delegate
                         {
                             imagebrushdrawing();
-                        //    usernameLable.Visibility = Visibility.Visible;
+                        //    usernameLable.Visibility = Visibility.Visible; //to del
                             cancelBtn.Visibility = Visibility.Hidden;
                         }));
                     }
@@ -189,7 +182,6 @@ namespace CanteenWPF
               //  Debug.WriteLine(cardnumber); //to del
               // Debug.WriteLine(total); //to del
 
-                //..............................
                 if ( cardnumber!="" && total!= 0)
                 {
                     Console.WriteLine("inside");
@@ -197,8 +189,6 @@ namespace CanteenWPF
                     String user = cardnumber;
                     String cost = total.ToString();
 
-                    //   var request = (HttpWebRequest)WebRequest.Create("http://localhost/vega/search.php");
-                    // var request = (HttpWebRequest)WebRequest.Create("http://vega.netau.net/put.php");
                     var request = (HttpWebRequest)WebRequest.Create("http://uom.comeze.com/backend/search.php");
 
 
@@ -224,16 +214,14 @@ namespace CanteenWPF
                         stream.Write(data, 0, data.Length);
                     }
                     
-                    
-
                     var response = (HttpWebResponse)request.GetResponse();
 
                     var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                    //Debug.WriteLine(responseString);
+                    //Debug.WriteLine(responseString); //to del
 
                     if (responseString.Contains("TrueItsWorking"))
                     {
-                        int Start = responseString.IndexOf("TrueItsWorking", 0) + 14;
+                         int Start = responseString.IndexOf("TrueItsWorking", 0) + 14;
                         int End = responseString.IndexOf("###@#", Start);
 
 
@@ -243,7 +231,7 @@ namespace CanteenWPF
                         amount = responseString.Substring(Start, End - Start);
 
                         usernameLable.Dispatcher.Invoke((() => usernameLable.Content = username));
-                      //  label13.Invoke((MethodInvoker)(() => label13.Text = amount));
+                      //  label13.Invoke((MethodInvoker)(() => label13.Text = amount)); //to del
                         
                         returnTotop = true;
 
@@ -275,10 +263,7 @@ namespace CanteenWPF
                     {
                         returnTotop = true;
                         outputLable.Dispatcher.Invoke(() => outputLable.Content = "Sorry ! INVALID CARD. ");
-                        
                     }
-
-
 
                 }
                 
@@ -289,11 +274,8 @@ namespace CanteenWPF
                     total = 0;
                     returnTotop = false;
 
-
                     returnToPreviousPanel();
                    
-                   
-
                 }
 
                 Thread.Sleep(10);
